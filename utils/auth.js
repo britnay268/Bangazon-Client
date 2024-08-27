@@ -3,22 +3,26 @@ import 'firebase/auth';
 import { clientCredentials } from './client';
 
 const checkUser = (uid) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/checkuser`, {
+  fetch(`${clientCredentials.databaseURL}/checkuser?uid=${uid}`, {
     method: 'POST',
-    body: JSON.stringify({
-      uid,
-    }),
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
   })
-    .then((resp) => resolve(resp.json()))
+    // .then((resp) => resolve(resp.json()))
+    .then((resp) => {
+      if (resp.ok) {
+        resolve(resp.json());
+      } else {
+        resolve({});
+      }
+    })
     .catch(reject);
 });
 
 const registerUser = (userInfo) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/register`, {
+  fetch(`${clientCredentials.databaseURL}/api/user`, {
     method: 'POST',
     body: JSON.stringify(userInfo),
     headers: {
@@ -26,7 +30,9 @@ const registerUser = (userInfo) => new Promise((resolve, reject) => {
       Accept: 'application/json',
     },
   })
-    .then((resp) => resolve(resp.json()))
+    // .then((resp) => resolve(resp.json()))
+    .then((response) => response.json())
+    .then((data) => resolve(data))
     .catch(reject);
 });
 

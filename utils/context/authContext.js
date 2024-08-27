@@ -10,6 +10,7 @@ import React, {
 import { checkUser } from '../auth';
 import { firebase } from '../client';
 
+// Creates a central point for managing authntication data.
 const AuthContext = createContext();
 
 AuthContext.displayName = 'AuthContext'; // Context object accepts a displayName string property. React DevTools uses this string to determine what to display for the context. https://reactjs.org/docs/context.html#contextdisplayname
@@ -35,6 +36,10 @@ const AuthProvider = (props) => {
       if (fbUser) {
         setOAuthUser(fbUser);
         checkUser(fbUser.uid).then((gamerInfo) => {
+          // If checkuser returns an object, it will not let the user in as their uid does not exist in the database.
+          if (Object.keys(gamerInfo).length === 0) {
+            firebase.auth().signOut();
+          }
           let userObj = {};
           if ('null' in gamerInfo) {
             userObj = gamerInfo;
