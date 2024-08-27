@@ -2,6 +2,7 @@ import { clientCredentials } from '../utils/client';
 
 const endpoint = clientCredentials.databaseURL;
 
+// Get all products
 const getProducts = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/api/products`, {
     method: 'GET',
@@ -14,6 +15,7 @@ const getProducts = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// GET Product details
 const getProductById = (productId) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/api/products/${productId}`, {
     method: 'GET',
@@ -26,6 +28,7 @@ const getProductById = (productId) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+// Search Product
 const searchProducts = (searchInput) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/api/product/search?searchInput=${searchInput}`, {
     method: 'POST',
@@ -39,6 +42,7 @@ const searchProducts = (searchInput) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+// GET the 20 latest products meaning last prooduct entered to the first product that makes the 20th product
 const getLatestProducts = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/api/products/latest`, {
     method: 'GET',
