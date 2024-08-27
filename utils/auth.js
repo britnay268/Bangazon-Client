@@ -22,7 +22,7 @@ const checkUser = (uid) => new Promise((resolve, reject) => {
 });
 
 const registerUser = (userInfo) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/register`, {
+  fetch(`${clientCredentials.databaseURL}/api/user`, {
     method: 'POST',
     body: JSON.stringify(userInfo),
     headers: {
@@ -30,7 +30,9 @@ const registerUser = (userInfo) => new Promise((resolve, reject) => {
       Accept: 'application/json',
     },
   })
-    .then((resp) => resolve(resp.json()))
+    // .then((resp) => resolve(resp.json()))
+    .then((response) => response.json())
+    .then((data) => resolve(data))
     .catch(reject);
 });
 
