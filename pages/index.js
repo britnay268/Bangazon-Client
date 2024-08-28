@@ -1,26 +1,56 @@
-import { Button } from 'react-bootstrap';
-import { signOut } from '../utils/auth';
-import { useAuth } from '../utils/context/authContext';
+import { useEffect, useState } from 'react';
+import { Button, Table } from 'react-bootstrap';
+import Link from 'next/link';
+import { getLatestProducts } from '../api/ProductData';
+// import { signOut } from '../utils/auth';
+// import { useAuth } from '../utils/context/authContext';
 
 function Home() {
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const [products, setProducts] = useState([]);
+
+  // const theLatestProducts = () => {
+  //   getLatestProducts().then(setProducts);
+  // };
+
+  // getLatestProducts().then(setProducts);
+  // console.warn(products);
+
+  useEffect(() => {
+    getLatestProducts().then(setProducts);
+    // theLatestProducts();
+  }, []);
 
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-      <h1>Hello {user.fbUser.displayName}! </h1>
-      <p>Your Bio: {user.bio}</p>
-      <p>Click the button below to logout!</p>
-      <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
-        Sign Out
-      </Button>
+    <div>
+      <Table>
+        <thead>
+          <tr>
+            <th>Feature Products</th>
+            <th>
+              <Link passHref href="/products">
+                <Button variant="success">See All Products</Button>
+              </Link>
+            </th>
+            {/* <th colSpan={8}>Last Name</th>
+            <th>Username</th> */}
+          </tr>
+        </thead>
+        <tbody>
+          {
+            products.map((p) => (
+              <tr key={p.id}>
+                <td>{p.name}</td>
+                <td>
+                  <Link passHref href={`/products/${p.id}`}>
+                    <Button variant="link">https://{p.name}/details</Button>
+                  </Link>
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </Table>
     </div>
   );
 }
