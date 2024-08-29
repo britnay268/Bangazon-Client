@@ -10,7 +10,7 @@ export default function ProductCard({ productObj }) {
         <Card.Img variant="top" src={productObj.imageUrl} />
         <Card.Body>
           <Card.Title>{productObj.name}</Card.Title>
-          <Card.Text>{productObj.user.username}</Card.Text>
+          <Card.Text>{productObj?.user?.username}</Card.Text>
           <Card.Text>{productObj.description}</Card.Text>
           <Card.Text>Price: ${productObj.price}</Card.Text>
           <Card.Text>{productObj.quantity > 0 ? 'In Stock' : 'Out of Stock'}</Card.Text>

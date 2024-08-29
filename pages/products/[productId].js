@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { Button } from 'react-bootstrap';
 import { getProductById } from '../../api/ProductData';
 
 export default function ProductDetails() {
@@ -17,7 +19,12 @@ export default function ProductDetails() {
     <>
       <img src={productDetails.imageUrl} alt={productDetails.name} style={{ width: '300px' }} />
       <h2>{productDetails.name}</h2>
-      <h6>Seller: {productDetails.user?.username}</h6>
+      <div>
+        <h6>Seller: </h6>
+        <Link href={`/sellerspage/${productDetails.user?.id}`} passHref>
+          <Button variant="link">{productDetails.user?.username}</Button>
+        </Link>
+      </div>
       <p>Category: {productDetails.category?.name}</p>
       <p>{productDetails.description}</p>
       <p>{productDetails.quantity > 0 ? 'In Stock' : 'Out of Stock'}</p>
