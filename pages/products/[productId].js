@@ -29,6 +29,7 @@ export default function ProductDetails() {
       <p>{productDetails.description}</p>
       <p>{productDetails.quantity > 0 ? 'In Stock' : 'Out of Stock'}</p>
       <p>Price Per Unit: {productDetails.price}</p>
+      <Button>Add to Cart</Button>
     </>
   );
 }

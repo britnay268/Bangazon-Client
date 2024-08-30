@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function ProductCard({ productObj }) {
+  const router = useRouter();
+
   return (
     <div>
       <Card style={{ width: '55rem', display: 'grid', gridTemplateColumns: '200px auto' }}>
@@ -17,6 +20,9 @@ export default function ProductCard({ productObj }) {
           <Link passHref href={`/products/${productObj.id}`}>
             <Button variant="link">Details</Button>
           </Link>
+          {router.asPath !== '/cart'
+            ? <Button>Add to Cart</Button>
+            : <Button>Delete</Button>}
         </Card.Body>
       </Card>
     </div>
