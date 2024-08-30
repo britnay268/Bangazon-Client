@@ -20,6 +20,7 @@ export default function Cart() {
 
   return (
     <div>
+      <h5>Subtotal: ${cart.totalPrice}</h5>
       {/* Loop through each order in cart */}
       {cart.products?.map((product) => (
         <ProductCard key={product.id} productObj={product} />
