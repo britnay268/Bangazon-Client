@@ -56,8 +56,13 @@ const addProductToOrder = (productId, userId) => new Promise((resolve, reject) =
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => response.json())
-    .then((data) => resolve(data))
+    .then((response) => {
+      if (response.ok) {
+        resolve(true);
+      } else {
+        reject(new Error(`Failed to add product: ${response.statusText}`));
+      }
+    })
     .catch(reject);
 });
 

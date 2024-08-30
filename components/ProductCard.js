@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useAuth } from '../utils/context/authContext';
 
-export default function ProductCard({ productObj }) {
+export default function ProductCard({ productObj, addProduct }) {
   const router = useRouter();
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
+
+  const { user } = useAuth();
+  const userId = user.user.id;
+
+  const handleAddToCart = () => {
+    // The addProduct is passing the parameters to the api in the addProduct function when the ProductCard component is being used.
+    addProduct(productObj.id, userId).then(() => {
+      setIsAddedToCart(true);
+    }); // Use the passed productId
+  };
 
   return (
     <div>
@@ -21,7 +33,11 @@ export default function ProductCard({ productObj }) {
             <Button variant="link">Details</Button>
           </Link>
           {router.asPath !== '/cart'
-            ? <Button>Add to Cart</Button>
+            ? (
+              <><Button onClick={handleAddToCart}>Add to Cart</Button>
+                {isAddedToCart && <span>Product added to cart.</span>}
+              </>
+            )
             : <Button>Delete</Button>}
         </Card.Body>
       </Card>
@@ -43,4 +59,9 @@ ProductCard.propTypes = {
       seller: PropTypes.bool,
     }),
   }).isRequired,
+  addProduct: PropTypes.func,
+};
+
+ProductCard.defaultProps = {
+  addProduct: () => {},
 };
