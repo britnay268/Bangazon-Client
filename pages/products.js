@@ -8,7 +8,6 @@ export default function ShowProducts() {
   const getAllTheProducts = () => {
     getProducts().then(setProducts);
   };
-  // console.warn(products);
 
   useEffect(() => {
     getAllTheProducts();
