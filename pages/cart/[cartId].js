@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -14,6 +15,7 @@ export default function Cart() {
   // console.warn(router);
 
   const { cartId } = router.query;
+  // console.warn(cart);
 
   const { user } = useAuth();
   const userId = user.user.id;
@@ -38,7 +40,7 @@ export default function Cart() {
 
   useEffect(() => {
     usersCart();
-  }, []);
+  }, [cart.Id]);
 
   return (
     <div>

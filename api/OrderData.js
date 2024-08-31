@@ -56,6 +56,7 @@ const addProductToOrder = (productId, userId) => new Promise((resolve, reject) =
       'Content-Type': 'application/json',
     },
   })
+  // There response data is not is just an object with properties signifying the call was successful so we do this to handle the response
     .then((response) => {
       if (response.ok) {
         resolve(true);
@@ -74,8 +75,14 @@ const updateOrder = (orderId, payload) => new Promise((resolve, reject) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(payload),
-  }).then((response) => response.json())
-    .then((data) => resolve(data))
+  })
+    .then((response) => {
+      if (response.ok) {
+        resolve(true);
+      } else {
+        reject(new Error(`Failed to add product: ${response.statusText}`));
+      }
+    })
     .catch((error) => reject(error));
 });
 
