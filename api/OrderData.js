@@ -56,8 +56,13 @@ const addProductToOrder = (productId, userId) => new Promise((resolve, reject) =
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => response.json())
-    .then((data) => resolve(data))
+    .then((response) => {
+      if (response.ok) {
+        resolve(true);
+      } else {
+        reject(new Error(`Failed to add product: ${response.statusText}`));
+      }
+    })
     .catch(reject);
 });
 
@@ -75,7 +80,7 @@ const updateOrder = (orderId, payload) => new Promise((resolve, reject) => {
 });
 
 // Remove Product from an Order
-const deleteProductToOrder = (orderId, productId) => new Promise((resolve, reject) => {
+const deleteProductFromOrder = (orderId, productId) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/api/orddr/${orderId}/product/${productId}`, {
     method: 'DELETE',
     headers: {
@@ -87,5 +92,5 @@ const deleteProductToOrder = (orderId, productId) => new Promise((resolve, rejec
 });
 
 export {
-  getOrders, getOrderById, createOrder, addProductToOrder, updateOrder, deleteProductToOrder,
+  getOrders, getOrderById, createOrder, addProductToOrder, updateOrder, deleteProductFromOrder,
 };

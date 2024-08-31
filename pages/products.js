@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import { getProducts } from '../api/ProductData';
+import { addProductToOrder } from '../api/OrderData';
 
 export default function ShowProducts() {
   const [products, setProducts] = useState([]);
@@ -8,7 +9,8 @@ export default function ShowProducts() {
   const getAllTheProducts = () => {
     getProducts().then(setProducts);
   };
-  // console.warn(products);
+
+  // console.warn(userId);
 
   useEffect(() => {
     getAllTheProducts();
@@ -17,7 +19,8 @@ export default function ShowProducts() {
   return (
     <div>
       {products.length === 0 ? <h1>You have no Products</h1> : products.map((product) => (
-        <ProductCard key={product.id} productObj={product} />
+        // The addProduct is using the api to
+        <ProductCard key={product.id} productObj={product} addProduct={addProductToOrder} />
       ))}
     </div>
   );
