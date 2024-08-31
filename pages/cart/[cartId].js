@@ -45,9 +45,18 @@ export default function Cart() {
   return (
     <div>
       <h5>Subtotal: ${cart.totalPrice}</h5>
-      <Link href={`/cart/${cartId}/checkout`} passHref>
-        <Button>Proceed to Checkout</Button>
-      </Link>
+
+      {/* If there are no products in the cart, they can't proceed to checkout */}
+      {
+        cart?.products?.length !== 0
+          ? (
+            <Link href={`/cart/${cartId}/checkout`} passHref>
+              <Button>Proceed to Checkout</Button>
+            </Link>
+          )
+          : ''
+      }
+
       {/* Loop through each order in cart */}
       {cart?.products?.length === 0
         ? <h1>You have no Products</h1>
