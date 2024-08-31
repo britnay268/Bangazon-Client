@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useAuth } from '../utils/context/authContext';
 
-export default function ProductCard({ productObj, addProduct }) {
+export default function ProductCard({ productObj, addProduct, deleteProduct }) {
   const router = useRouter();
   const [isAddedToCart, setIsAddedToCart] = useState(false);
 
@@ -17,6 +17,10 @@ export default function ProductCard({ productObj, addProduct }) {
     addProduct(productObj.id, userId).then(() => {
       setIsAddedToCart(true);
     }); // Use the passed productId
+  };
+
+  const handleDeleteFromCart = () => {
+    deleteProduct(productObj.id);
   };
 
   return (
@@ -32,13 +36,13 @@ export default function ProductCard({ productObj, addProduct }) {
           <Link passHref href={`/products/${productObj.id}`}>
             <Button variant="link">Details</Button>
           </Link>
-          {router.asPath !== '/cart'
-            ? (
+          {router.asPath.startsWith('/cart')
+            ? <Button onClick={handleDeleteFromCart}>Delete</Button>
+            : (
               <><Button onClick={handleAddToCart}>Add to Cart</Button>
                 {isAddedToCart && <span>Product added to cart.</span>}
               </>
-            )
-            : <Button>Delete</Button>}
+            )}
         </Card.Body>
       </Card>
     </div>
@@ -60,8 +64,10 @@ ProductCard.propTypes = {
     }),
   }).isRequired,
   addProduct: PropTypes.func,
+  deleteProduct: PropTypes.func,
 };
 
 ProductCard.defaultProps = {
   addProduct: () => {},
+  deleteProduct: () => {},
 };
