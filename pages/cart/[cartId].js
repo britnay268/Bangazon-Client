@@ -1,5 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { getUsersOrders } from '../../api/UserData';
 import ProductCard from '../../components/ProductCard';
@@ -12,6 +15,7 @@ export default function Cart() {
   // console.warn(router);
 
   const { cartId } = router.query;
+  // console.warn(cart);
 
   const { user } = useAuth();
   const userId = user.user.id;
@@ -36,11 +40,23 @@ export default function Cart() {
 
   useEffect(() => {
     usersCart();
-  }, []);
+  }, [cart.Id]);
 
   return (
     <div>
       <h5>Subtotal: ${cart.totalPrice}</h5>
+
+      {/* If there are no products in the cart, they can't proceed to checkout */}
+      {
+        cart?.products?.length !== 0
+          ? (
+            <Link href={`/cart/${cartId}/checkout`} passHref>
+              <Button>Proceed to Checkout</Button>
+            </Link>
+          )
+          : ''
+      }
+
       {/* Loop through each order in cart */}
       {cart?.products?.length === 0
         ? <h1>You have no Products</h1>
