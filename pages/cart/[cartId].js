@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { getUsersOrders } from '../../api/UserData';
 import ProductCard from '../../components/ProductCard';
@@ -41,6 +43,9 @@ export default function Cart() {
   return (
     <div>
       <h5>Subtotal: ${cart.totalPrice}</h5>
+      <Link href={`/cart/${cartId}/checkout`} passHref>
+        <Button>Proceed to Checkout</Button>
+      </Link>
       {/* Loop through each order in cart */}
       {cart?.products?.length === 0
         ? <h1>You have no Products</h1>
