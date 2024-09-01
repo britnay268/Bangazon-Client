@@ -19,7 +19,7 @@ export default function NavBar() {
 
   useEffect(() => {
     getUsersOrders(userId).then(setCart);
-  }, [cart.id, userId]);
+  }, [userId]);
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
