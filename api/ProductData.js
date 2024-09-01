@@ -31,14 +31,20 @@ const getProductById = (productId) => new Promise((resolve, reject) => {
 // Search Product
 const searchProducts = (searchInput) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/api/product/search?searchInput=${searchInput}`, {
-    method: 'POST',
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(searchInput),
+    // body: JSON.stringify(searchInput),
   })
     .then((response) => response.json())
-    .then((data) => resolve(data))
+    .then((data) => {
+      if (data) {
+        resolve(data);
+      } else {
+        resolve([]);
+      }
+    })
     .catch((error) => reject(error));
 });
 

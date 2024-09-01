@@ -10,6 +10,7 @@ import {
 import { signOut } from '../utils/auth';
 import { getUsersOrders } from '../api/UserData';
 import { useAuth } from '../utils/context/authContext';
+import SearchBar from './forms/SearchBar';
 
 export default function NavBar() {
   const [cart, setCart] = useState([]);
@@ -40,6 +41,7 @@ export default function NavBar() {
             <Button variant="danger" onClick={signOut}>
               Sign Out
             </Button>
+            <SearchBar />
           </Nav>
           <div className="d-flex">
             <Link passHref href={`/cart/${cart.id}`}>

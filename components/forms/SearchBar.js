@@ -1,16 +1,27 @@
 import { Form } from 'react-bootstrap';
-import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar() {
+  const [searchInput, setSearchInput] = useState('');
+
+  const router = useRouter();
+
   const handleChange = (e) => {
-    onSearch(e.target.value.toLowerCase());
+    setSearchInput(e.target.value);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    if (searchInput !== '') router.push(`/search/${searchInput}`);
   };
 
   return (
-    <Form className="d-flex text search">
+    <Form className="d-flex text" onSubmit={handleSearch}>
       <Form.Control
         type="search"
-        placeholder="Search Hairstyle Name"
+        placeholder="Search Product"
         className="me-2 search-bar"
         aria-label="Search"
         name="search"
@@ -20,7 +31,3 @@ export default function SearchBar({ onSearch }) {
 
   );
 }
-
-SearchBar.propTypes = {
-  onSearch: PropTypes.func.isRequired,
-};
