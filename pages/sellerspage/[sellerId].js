@@ -13,7 +13,7 @@ export default function SellersPage() {
     getSellersProducts(sellerId).then(setSellersProducts);
   }, [sellerId]);
 
-  console.warn(sellersProducts);
+  // console.warn(sellersProducts);
   return (
     <div>
       {(sellersProducts.length === 0) ? <h1>You have no Products</h1> : sellersProducts.map((product) => (
