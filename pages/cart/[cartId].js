@@ -18,6 +18,7 @@ export default function Cart() {
   // console.warn(cart);
 
   const { user } = useAuth();
+  console.warn(user);
   const userId = user.user.id;
 
   const usersCart = async () => {

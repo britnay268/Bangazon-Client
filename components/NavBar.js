@@ -5,9 +5,7 @@ import {
   Navbar, //
   Container,
   Nav,
-  Button,
 } from 'react-bootstrap';
-import { signOut } from '../utils/auth';
 import { getUsersOrders } from '../api/UserData';
 import { useAuth } from '../utils/context/authContext';
 import SearchBar from './forms/SearchBar';
@@ -38,15 +36,17 @@ export default function NavBar() {
             <Link passHref href="/products">
               <Nav.Link>Products</Nav.Link>
             </Link>
-            <Button variant="danger" onClick={signOut}>
-              Sign Out
-            </Button>
             <SearchBar />
           </Nav>
           <div className="d-flex">
-            <Link passHref href={`/cart/${cart.id}`}>
-              <Nav.Link style={{ color: 'white' }}>Cart</Nav.Link>
+            <Link passHref href="/profile">
+              <Nav.Link style={{ color: 'white' }}>Profile</Nav.Link>
             </Link>
+            <div className="ms-4">
+              <Link passHref href={`/cart/${cart.id}`}>
+                <Nav.Link style={{ color: 'white' }}>Cart</Nav.Link>
+              </Link>
+            </div>
           </div>
         </Navbar.Collapse>
       </Container>
