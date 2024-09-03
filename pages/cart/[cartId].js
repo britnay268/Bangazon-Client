@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { getUsersOrders } from '../../api/UserData';
-import ProductCard from '../../components/ProductCard';
 import { deleteProductFromOrder } from '../../api/OrderData';
+import CartProducts from '../../components/CartProducts';
 
 export default function Cart() {
   const [cart, setCart] = useState([]);
@@ -18,7 +18,7 @@ export default function Cart() {
   // console.warn(cart);
 
   const { user } = useAuth();
-  console.warn(user);
+
   const userId = user.user.id;
 
   const usersCart = async () => {
@@ -57,13 +57,14 @@ export default function Cart() {
           )
           : ''
       }
-
-      {/* Loop through each order in cart */}
-      {cart?.products?.length === 0
-        ? <h1>You have no Products</h1>
-        : cart.products?.map((product) => (
-          <ProductCard key={product.id} productObj={product} deleteProduct={deleteProductFromCart} />
-        ))}
+      <div>
+        {/* Loop through each order in cart */}
+        {cart?.products?.length === 0
+          ? <h1>You have no Products</h1>
+          : cart.products?.map((product) => (
+            <CartProducts key={product.id} productObj={product} deleteProduct={deleteProductFromCart} />
+          ))}
+      </div>
     </div>
   );
 }

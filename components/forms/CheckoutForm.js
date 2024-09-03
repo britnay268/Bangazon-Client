@@ -40,7 +40,7 @@ export default function CheckoutForm({ obj }) {
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} style={{ width: '20rem' }}>
         <h2 className="text-white mt-5">Checkout</h2>
         <h5>Total: ${obj.totalPrice}</h5>
 

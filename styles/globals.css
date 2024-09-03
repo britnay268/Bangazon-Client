@@ -24,16 +24,37 @@ body {
 .product-card {
   display: grid;
   grid-template-columns: 150px auto;
-  width: 25rem;
+  width: 28rem;
   height: 10rem;
   margin-bottom: 20px;
   margin-top: 15px;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
 }
 
+.detailsBtn {
+  display: flex;
+  align-items: center;
+}
 
 .productInfo {
   display: flex;
   justify-content: space-between;
+  margin: 10px;
+}
+
+.cartProductInfo {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0px;
+}
+
+.seller {
+  margin-bottom: 50px;
 }
 
 .card-title {
@@ -84,4 +105,35 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+.checkout-card {
+  width: 80rem; 
+  display: grid; 
+  margin-top: 15px;
+  grid-template-columns: 250px auto;
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .checkout-card {
+    width: 100%; /* Adjust width for smaller screens */
+  }
+}
+
+
+@media (max-width: 768px) {
+  .checkout-card {
+    width: 80%; /* Adjust width for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-card {
+    width: 100%; /* Make the card full width on very small screens */
+  }
 }

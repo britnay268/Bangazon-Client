@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, Nav } from 'react-bootstrap';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { TbShoppingCartPlus } from 'react-icons/tb';
@@ -35,7 +35,9 @@ export default function ProductCard({ productObj, addProduct, deleteProduct }) {
           <div className="productInfo">
             <div className="productDetails">
               <Card.Title>{productObj.name}</Card.Title>
-              <Card.Text>{productObj?.user?.username}</Card.Text>
+              <Link passHref href={`/sellerspage/${productObj?.user?.id}`}>
+                <Nav.Link variant="link" style={{ marginBottom: '15px' }}>{productObj?.user?.username}</Nav.Link>
+              </Link>
               <Card.Text className="price">${productObj.price}</Card.Text>
               <Card.Text className={productObj.quantity > 0 ? 'inStock' : 'outOfStock'}>{productObj.quantity > 0 ? 'In Stock' : 'Out of Stock'}</Card.Text>
             </div>
@@ -76,6 +78,7 @@ ProductCard.propTypes = {
     quantity: PropTypes.number,
     imageUrl: PropTypes.string,
     user: PropTypes.shape({
+      id: PropTypes.number,
       name: PropTypes.string,
       username: PropTypes.string,
       seller: PropTypes.bool,
