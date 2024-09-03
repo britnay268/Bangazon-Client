@@ -12,10 +12,8 @@ export default function Cart() {
   const [cart, setCart] = useState([]);
 
   const router = useRouter();
-  // console.warn(router);
 
   const { cartId } = router.query;
-  // console.warn(cart);
 
   const { user } = useAuth();
 

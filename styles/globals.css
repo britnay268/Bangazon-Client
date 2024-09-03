@@ -18,7 +18,7 @@ a {
 }
 
 body {
-  background-color: #9ea1a1;
+  background-color: #E7EEF1;
 }
 
 .product-card {
@@ -67,7 +67,7 @@ body {
 }
 
 .inStock {
-  color: rgb(20, 205, 20);
+  color: #0FF34F;
 }
 
 .outOfStock {
@@ -136,4 +136,37 @@ body {
   .checkout-card {
     width: 100%; /* Make the card full width on very small screens */
   }
+}
+
+.cart {
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.appName {
+  color: #0FF34F;
+}
+
+.productDetailPage {
+  display: flex; 
+  padding: 10px 20px 150px 20px;
+  background-color: whitesmoke;
+  margin-top: 50px;
+
+  img {
+    width: 400px;
+  }
+
+  h2 {
+    margin-bottom: 0px;
+  }
+}
+
+.productDetailContent {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

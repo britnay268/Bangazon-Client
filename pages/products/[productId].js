@@ -2,7 +2,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Button } from 'react-bootstrap';
+import { Button, Nav } from 'react-bootstrap';
 import { getProductById } from '../../api/ProductData';
 import { addProductToOrder } from '../../api/OrderData';
 import { useAuth } from '../../utils/context/authContext';
@@ -22,21 +22,25 @@ export default function ProductDetails() {
   }, [productId]);
 
   return (
-    <>
-      <img src={productDetails.imageUrl} alt={productDetails.name} style={{ width: '300px' }} />
-      <h2>{productDetails.name}</h2>
-      <div>
-        <h6>Seller: </h6>
-        <Link href={`/sellerspage/${productDetails.user?.id}`} passHref>
-          <Button variant="link">{productDetails.user?.username}</Button>
-        </Link>
+    <div className="productDetailPage">
+      <img src={productDetails.imageUrl} alt={productDetails.name} />
+      <div className="productDetailContent">
+        <div>
+          <h2>{productDetails.name}</h2>
+          <Link passHref href={`/sellerspage/${productDetails.user?.id}`}>
+            <Nav.Link variant="link"> <strong>Seller:</strong> {productDetails.user?.username}</Nav.Link>
+          </Link>
+          <p><strong>Found in</strong> {productDetails.category?.name}</p>
+          <hr />
+          <p>{productDetails.description}</p>
+        </div>
+        <div>
+          <p className={productDetails.quantity > 0 ? 'inStock' : 'outOfStock'} style={{ marginBottom: '0px' }}>{productDetails.quantity > 0 ? 'In Stock' : 'Out of Stock'}</p>
+          <p>Price Per Unit: {productDetails.price}</p>
+          <Button onClick={() => addProductToOrder(productId, userId).then(() => { setIsAddedToCart(true); })}>Add to Cart</Button>
+          {isAddedToCart && <span>Product added to cart.</span>}
+        </div>
       </div>
-      <p>Category: {productDetails.category?.name}</p>
-      <p>{productDetails.description}</p>
-      <p>{productDetails.quantity > 0 ? 'In Stock' : 'Out of Stock'}</p>
-      <p>Price Per Unit: {productDetails.price}</p>
-      <Button onClick={() => addProductToOrder(productId, userId).then(() => { setIsAddedToCart(true); })}>Add to Cart</Button>
-      {isAddedToCart && <span>Product added to cart.</span>}
-    </>
+    </div>
   );
 }

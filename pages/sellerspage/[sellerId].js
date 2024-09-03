@@ -13,7 +13,6 @@ export default function SellersPage() {
     getSellersProducts(sellerId).then(setSellersProducts);
   }, [sellerId]);
 
-  console.warn(sellersProducts);
   return (
     <div>
       <h1 style={{ textAlign: 'center', width: '100%' }}>{sellersProducts[0]?.user?.username} Products</h1>

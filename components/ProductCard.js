@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Button, Card, Nav } from 'react-bootstrap';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { TbShoppingCartPlus } from 'react-icons/tb';
+import { FaCartPlus } from 'react-icons/fa';
 import { BiDetail } from 'react-icons/bi';
 import { AiFillDelete } from 'react-icons/ai';
 import { useAuth } from '../utils/context/authContext';
@@ -55,8 +55,8 @@ export default function ProductCard({ productObj, addProduct, deleteProduct }) {
                       <Button className="btnAlign" variant="link"><BiDetail />
                       </Button>
                     </Link>
-                    <Button variant="link" style={{ color: 'rgb(20, 205, 20)' }} onClick={handleAddToCart}>
-                      <TbShoppingCartPlus />
+                    <Button variant="link" style={{ color: '#0FF34F' }} onClick={handleAddToCart}>
+                      <FaCartPlus />
                     </Button>
                     {isAddedToCart && <span>Product added to cart.</span>}
                   </div>

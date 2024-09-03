@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -6,6 +7,7 @@ import {
   Container,
   Nav,
 } from 'react-bootstrap';
+import { FaShoppingCart } from 'react-icons/fa';
 import { getUsersOrders } from '../api/UserData';
 import { useAuth } from '../utils/context/authContext';
 import SearchBar from './forms/SearchBar';
@@ -24,7 +26,7 @@ export default function NavBar() {
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <Link passHref href="/">
-          <Navbar.Brand>Bangazon</Navbar.Brand>
+          <Navbar.Brand className="appName">Bangazon</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -40,11 +42,12 @@ export default function NavBar() {
           </Nav>
           <div className="d-flex">
             <Link passHref href="/profile">
-              <Nav.Link style={{ color: 'white' }}>Profile</Nav.Link>
+              <Nav.Link style={{ color: 'white' }}>@{user.user.username}</Nav.Link>
             </Link>
-            <div className="ms-4">
+            <div className="ms-4 cart">
               <Link passHref href={`/cart/${cart.id}`}>
-                <Nav.Link style={{ color: 'white' }}>Cart</Nav.Link>
+                <Nav.Link style={{ color: 'white' }}><FaShoppingCart />
+                </Nav.Link>
               </Link>
             </div>
           </div>
