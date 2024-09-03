@@ -20,3 +20,68 @@ a {
 body {
   background-color: #9ea1a1;
 }
+
+.product-card {
+  display: grid;
+  grid-template-columns: 150px auto;
+  width: 25rem;
+  height: 10rem;
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
+
+
+.productInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-title {
+  margin-bottom: 0px;
+}
+
+.price {
+  margin-bottom: 0px;
+  font-size: 15px;
+}
+
+.inStock {
+  color: rgb(20, 205, 20);
+}
+
+.outOfStock {
+  color: red;
+}
+
+.btnAlign {
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.productDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.productButtons {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-body {
+  padding: 10px 10px 0px;
+}
+
+.card-img {
+  height: 158px;
+}
+
+.product-page {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
