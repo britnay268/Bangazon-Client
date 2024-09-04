@@ -238,3 +238,28 @@ body {
     height: 150px;
   }
 }
+
+.logo {
+  width: 300px;
+  height: 300px;
+  margin: 30px auto;
+}
+
+.signIn-container {
+  padding: 50px;
+  max-width: 800px;
+  margin: 250px auto;
+  border-radius: 50px;
+  background-color: white;
+}
+
+.signIn-button {
+  background-color: black;
+  border: none;
+  border-radius: 8px;
+  width: fit-content;
+  margin: 0 auto;
+  padding-left: 50px;
+  padding-right: 50px;
+  color: whitesmoke;
+}
