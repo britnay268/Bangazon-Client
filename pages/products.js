@@ -10,7 +10,7 @@ export default function ShowProducts() {
     getProducts().then(setProducts);
   };
 
-  // console.warn(userId);
+  console.warn(products);
 
   useEffect(() => {
     getAllTheProducts();
