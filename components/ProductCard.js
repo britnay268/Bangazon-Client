@@ -32,36 +32,40 @@ export default function ProductCard({ productObj, addProduct, deleteProduct }) {
       <Card className="product-card">
         <Card.Img src={productObj.imageUrl} />
         <Card.Body>
-          <div className="productInfo">
-            <div className="productDetails">
+          <div className="productDetails">
+            <div>
               <Card.Title>{productObj.name}</Card.Title>
               <Link passHref href={`/sellerspage/${productObj?.user?.id}`}>
                 <Nav.Link variant="link" style={{ marginBottom: '15px' }}>{productObj?.user?.username}</Nav.Link>
               </Link>
-              <Card.Text className="price">${productObj.price}</Card.Text>
-              <Card.Text className={productObj.quantity > 0 ? 'inStock' : 'outOfStock'}>{productObj.quantity > 0 ? 'In Stock' : 'Out of Stock'}</Card.Text>
             </div>
-            <div className="productButtons">
-              {router.asPath.startsWith('/cart')
-                ? (
-                  <div className="btnAlign">
-                    <Button variant="link" style={{ color: 'red' }} onClick={handleDeleteFromCart}><AiFillDelete />
-                    </Button>
-                  </div>
-                )
-                : (
-                  <div className="btnAlign">
-                    <Link passHref href={`/products/${productObj.id}`}>
-                      <Button className="btnAlign" variant="link"><BiDetail />
-                      </Button>
-                    </Link>
-                    <Button variant="link" style={{ color: '#0FF34F' }} onClick={handleAddToCart}>
-                      <FaCartPlus />
-                    </Button>
-                    {isAddedToCart && <span>Product added to cart.</span>}
-                  </div>
-                )}
+            <div className="productCartContent">
+              <div>
+                <Card.Text className="price">${productObj.price}</Card.Text>
+                <Card.Text className={productObj.quantity > 0 ? 'inStock' : 'outOfStock'}>{productObj.quantity > 0 ? 'In Stock' : 'Out of Stock'}</Card.Text>
+              </div>
             </div>
+          </div>
+          <div className="productButtons">
+            {router.asPath.startsWith('/cart')
+              ? (
+                <div className="btnAlign">
+                  <Button variant="link" style={{ color: 'red' }} onClick={handleDeleteFromCart}><AiFillDelete />
+                  </Button>
+                </div>
+              )
+              : (
+                <div className="btnAlign">
+                  <Link passHref href={`/products/${productObj.id}`}>
+                    <Button className="btnAlign" variant="link"><BiDetail />
+                    </Button>
+                  </Link>
+                  <Button variant="link" style={{ color: '#0FF34F' }} onClick={handleAddToCart}>
+                    <FaCartPlus />
+                  </Button>
+                  {isAddedToCart && <span>Product added to cart.</span>}
+                </div>
+              )}
           </div>
         </Card.Body>
       </Card>

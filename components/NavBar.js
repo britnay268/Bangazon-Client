@@ -23,8 +23,16 @@ export default function NavBar() {
   }, [userId]);
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Container>
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      bg="light"
+      data-bs-theme="light"
+      style={{
+        display: 'flex', flexDirection: 'column', padding: '0px', margin: '0px',
+      }}
+    >
+      <Container style={{ margin: '0px', padding: '0px' }}>
         <Link passHref href="/">
           <Navbar.Brand className="appName">Bangazon</Navbar.Brand>
         </Link>
@@ -42,11 +50,11 @@ export default function NavBar() {
           </Nav>
           <div className="d-flex">
             <Link passHref href="/profile">
-              <Nav.Link style={{ color: 'white' }}>@{user.user.username}</Nav.Link>
+              <Nav.Link>@{user.user.username}</Nav.Link>
             </Link>
             <div className="ms-4 cart">
               <Link passHref href={`/cart/${cart.id}`}>
-                <Nav.Link style={{ color: 'white' }}><FaShoppingCart />
+                <Nav.Link><FaShoppingCart />
                 </Nav.Link>
               </Link>
             </div>

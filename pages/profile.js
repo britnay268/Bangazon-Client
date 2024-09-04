@@ -7,7 +7,7 @@ export default function Profile() {
   const { user } = useAuth();
 
   return (
-    <div>
+    <div className="profile">
       <Image src={user.fbUser.photoURL} alt="Profile-image" />
       <h3>{user.user.username}</h3>
       <p>{user.fbUser.displayName}</p>

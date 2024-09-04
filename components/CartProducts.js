@@ -15,35 +15,37 @@ export default function CartProducts({ productObj, deleteProduct }) {
   };
 
   return (
-    <>
+    <div>
       <Card className="checkout-card">
         <Card.Img variant="top" src={productObj.imageUrl} />
         <Card.Body>
-          <div className="cartProductInfo">
-            <div className="productDetails">
+          <div className="productDetails">
+            <div>
               <Card.Title>{productObj.name}</Card.Title>
               <Link passHref href={`/sellerspage/${productObj.user.id}`}>
                 <Nav.Link variant="link" style={{ color: 'black', marginBottom: '50px' }}>{productObj?.user?.username}</Nav.Link>
               </Link>
+            </div>
+            <div>
               <Card.Text className="price">Price: ${productObj.price}</Card.Text>
               <Card.Text className={productObj.quantity > 0 ? 'inStock' : 'outOfStock'}>{productObj.quantity > 0 ? 'In Stock' : 'Out of Stock'}</Card.Text>
             </div>
-            {router.asPath.includes('checkout')
-              ? (
-                <Link passHref href={`/products/${productObj.id}`}>
-                  <Button variant="link" className="element detailsBtn"><BiDetail /></Button>
-                </Link>
-              )
-              : (
-                <div className="btnAlign">
-                  <Button variant="link" style={{ color: 'red' }} onClick={handleDeleteFromCart}><AiFillDelete />
-                  </Button>
-                </div>
-              )}
           </div>
+          {router.asPath.includes('checkout')
+            ? (
+              <Link passHref href={`/products/${productObj.id}`}>
+                <Button variant="link" className="element detailsBtn"><BiDetail /></Button>
+              </Link>
+            )
+            : (
+              <div className="btnAlign">
+                <Button variant="link" style={{ color: 'red' }} onClick={handleDeleteFromCart}><AiFillDelete />
+                </Button>
+              </div>
+            )}
         </Card.Body>
       </Card>
-    </>
+    </div>
   );
 }
 
