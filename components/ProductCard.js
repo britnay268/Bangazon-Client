@@ -1,8 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, Nav } from 'react-bootstrap';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { FaCartPlus } from 'react-icons/fa';
+import { BiDetail } from 'react-icons/bi';
+import { AiFillDelete } from 'react-icons/ai';
 import { useAuth } from '../utils/context/authContext';
 
 export default function ProductCard({ productObj, addProduct, deleteProduct }) {
@@ -25,24 +29,44 @@ export default function ProductCard({ productObj, addProduct, deleteProduct }) {
 
   return (
     <div>
-      <Card style={{ width: '55rem', display: 'grid', gridTemplateColumns: '200px auto' }}>
-        <Card.Img variant="top" src={productObj.imageUrl} />
+      <Card className="product-card">
+        <Card.Img src={productObj.imageUrl} />
         <Card.Body>
-          <Card.Title>{productObj.name}</Card.Title>
-          <Card.Text>{productObj?.user?.username}</Card.Text>
-          <Card.Text>{productObj.description}</Card.Text>
-          <Card.Text>Price: ${productObj.price}</Card.Text>
-          <Card.Text>{productObj.quantity > 0 ? 'In Stock' : 'Out of Stock'}</Card.Text>
-          <Link passHref href={`/products/${productObj.id}`}>
-            <Button variant="link">Details</Button>
-          </Link>
-          {router.asPath.startsWith('/cart')
-            ? <Button onClick={handleDeleteFromCart}>Delete</Button>
-            : (
-              <><Button onClick={handleAddToCart}>Add to Cart</Button>
-                {isAddedToCart && <span>Product added to cart.</span>}
-              </>
-            )}
+          <div className="productDetails">
+            <div>
+              <Card.Title>{productObj.name}</Card.Title>
+              <Link passHref href={`/sellerspage/${productObj?.user?.id}`}>
+                <Nav.Link variant="link" style={{ marginBottom: '15px' }}>{productObj?.user?.username}</Nav.Link>
+              </Link>
+            </div>
+            <div className="productCartContent">
+              <div>
+                <Card.Text className="price">${productObj.price}</Card.Text>
+                <Card.Text className={productObj.quantity > 0 ? 'inStock' : 'outOfStock'}>{productObj.quantity > 0 ? 'In Stock' : 'Out of Stock'}</Card.Text>
+              </div>
+            </div>
+          </div>
+          <div className="productButtons">
+            {router.asPath.startsWith('/cart')
+              ? (
+                <div className="btnAlign">
+                  <Button variant="link" style={{ color: 'red' }} onClick={handleDeleteFromCart}><AiFillDelete />
+                  </Button>
+                </div>
+              )
+              : (
+                <div className="btnAlign">
+                  <Link passHref href={`/products/${productObj.id}`}>
+                    <Button className="btnAlign" variant="link"><BiDetail />
+                    </Button>
+                  </Link>
+                  <Button variant="link" style={{ color: '#0FF34F' }} onClick={handleAddToCart}>
+                    <FaCartPlus />
+                  </Button>
+                  {isAddedToCart && <span>Product added to cart.</span>}
+                </div>
+              )}
+          </div>
         </Card.Body>
       </Card>
     </div>
@@ -58,6 +82,7 @@ ProductCard.propTypes = {
     quantity: PropTypes.number,
     imageUrl: PropTypes.string,
     user: PropTypes.shape({
+      id: PropTypes.number,
       name: PropTypes.string,
       username: PropTypes.string,
       seller: PropTypes.bool,

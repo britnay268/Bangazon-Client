@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CheckoutForm from '../../../components/forms/CheckoutForm';
 import { getUsersOrders } from '../../../api/UserData';
 import { useAuth } from '../../../utils/context/authContext';
-import ProductCardCheckout from '../../../components/ProductCheckoutCard';
+import CartProducts from '../../../components/CartProducts';
 
 export default function Checkout() {
   const [cart, setCart] = useState({});
@@ -18,7 +18,7 @@ export default function Checkout() {
     <div>
       <CheckoutForm obj={cart} />
       {cart.products?.map((product) => (
-        <ProductCardCheckout key={product.id} productObj={product} />
+        <CartProducts key={product.id} productObj={product} />
       ))}
     </div>
   );

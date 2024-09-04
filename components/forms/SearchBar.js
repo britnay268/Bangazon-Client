@@ -18,11 +18,12 @@ export default function SearchBar() {
   };
 
   return (
-    <Form className="d-flex text" onSubmit={handleSearch}>
+    <Form className="d-flex text search-bar" onSubmit={handleSearch}>
       <Form.Control
         type="search"
         placeholder="Search Product"
-        className="me-2 search-bar"
+        className="me-2"
+        style={{ border: 'none' }}
         aria-label="Search"
         name="search"
         onChange={handleChange}

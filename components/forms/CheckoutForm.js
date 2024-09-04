@@ -40,8 +40,7 @@ export default function CheckoutForm({ obj }) {
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
-        <h2 className="text-white mt-5">Checkout</h2>
+      <Form onSubmit={handleSubmit} className="checkoutForm">
         <h5>Total: ${obj.totalPrice}</h5>
 
         <FloatingLabel controlId="floatingInput1" label="Payment Type" className="mb-3">
@@ -67,8 +66,8 @@ export default function CheckoutForm({ obj }) {
           </Form.Select>
         </FloatingLabel>
 
-        <div>
-          <Button type="submit">Place Order</Button>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Button type="submit" className="checkoutBtn">Place Order</Button>
         </div>
         {
           isModalOpen && <OrderPlacedModal onClose={() => setIsModalOpen(false)} />

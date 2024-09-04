@@ -13,12 +13,14 @@ export default function SellersPage() {
     getSellersProducts(sellerId).then(setSellersProducts);
   }, [sellerId]);
 
-  // console.warn(sellersProducts);
   return (
     <div>
-      {(sellersProducts.length === 0) ? <h1>You have no Products</h1> : sellersProducts.map((product) => (
-        <ProductCard key={product.id} productObj={product} />
-      ))}
+      <h1 style={{ textAlign: 'center', width: '100%' }}>{sellersProducts[0]?.user?.username} Products</h1>
+      <div className="product-page">
+        {(sellersProducts.length === 0) ? <h1>You have no Products</h1> : sellersProducts.map((product) => (
+          <ProductCard key={product.id} productObj={product} />
+        ))}
+      </div>
     </div>
   );
 }
