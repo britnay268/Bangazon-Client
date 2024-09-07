@@ -215,6 +215,7 @@ body {
 .productLinks {
   display: flex;
   justify-content: center;
+  height: 67px;
 }
 
 .search-bar {
@@ -305,7 +306,7 @@ body {
 }
 
 .prodImage {
-  width: 25px;
-  height: 25px;
+  width: 50px;
+  height: 50px;
   margin-right: 5px;
 }
