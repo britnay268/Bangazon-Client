@@ -215,6 +215,7 @@ body {
 .productLinks {
   display: flex;
   justify-content: center;
+  height: 67px;
 }
 
 .search-bar {
@@ -262,4 +263,50 @@ body {
   padding-left: 50px;
   padding-right: 50px;
   color: whitesmoke;
+}
+
+.formLayout{
+  padding: 50px;
+  max-width: 500px;
+  margin: 200px auto;
+  background-color: white;
+  border-radius: 8px;
+  
+  form {
+    label {
+      margin-bottom: 0px;
+      font-weight: bold;
+    }
+
+    input {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.registerButton {
+  display: flex;
+  justify-content: center;
+
+  button {
+    background-color: black;
+    border: black;
+  }
+}
+
+.registerlogo {
+  width: 120px;
+  height: 120px;
+}
+
+.imagePosition{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.prodImage {
+  width: 50px;
+  height: 50px;
+  margin-right: 5px;
 }

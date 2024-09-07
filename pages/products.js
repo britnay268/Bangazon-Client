@@ -10,8 +10,6 @@ export default function ShowProducts() {
     getProducts().then(setProducts);
   };
 
-  console.warn(products);
-
   useEffect(() => {
     getAllTheProducts();
   }, []);

@@ -16,7 +16,7 @@ export default function NavBar() {
   const [cart, setCart] = useState([]);
 
   const { user } = useAuth();
-  const userId = user.user.id;
+  const userId = user?.user?.id;
 
   useEffect(() => {
     getUsersOrders(userId).then(setCart);
@@ -50,7 +50,7 @@ export default function NavBar() {
           </Nav>
           <div className="d-flex">
             <Link passHref href="/profile">
-              <Nav.Link>@{user.user.username}</Nav.Link>
+              <Nav.Link>@{user?.user?.username}</Nav.Link>
             </Link>
             <div className="ms-4 cart">
               <Link passHref href={`/cart/${cart.id}`}>
