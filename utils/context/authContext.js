@@ -37,9 +37,6 @@ const AuthProvider = (props) => {
         setOAuthUser(fbUser);
         checkUser(fbUser.uid).then((gamerInfo) => {
           // If checkuser returns an object, it will not let the user in as their uid does not exist in the database.
-          if (Object.keys(gamerInfo).length === 0) {
-            firebase.auth().signOut();
-          }
           let userObj = {};
           if ('null' in gamerInfo) {
             userObj = gamerInfo;
