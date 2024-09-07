@@ -303,3 +303,9 @@ body {
   justify-content: center;
   margin-bottom: 20px;
 }
+
+.prodImage {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}

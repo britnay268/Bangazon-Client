@@ -39,6 +39,9 @@ export default function CartProducts({ productObj, deleteProduct }) {
             )
             : (
               <div className="btnAlign">
+                <Link passHref href={`/products/${productObj.id}`}>
+                  <Button variant="link" className="element detailsBtn"><BiDetail /></Button>
+                </Link>
                 <Button variant="link" style={{ color: 'red' }} onClick={handleDeleteFromCart}><AiFillDelete />
                 </Button>
               </div>

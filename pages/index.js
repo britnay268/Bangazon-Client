@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import Link from 'next/link';
@@ -29,7 +30,7 @@ function Home() {
           {
             products.map((p) => (
               <tr key={p.id}>
-                <td>{p.name}</td>
+                <td><img src={p.imageUrl} alt="productImage" className="prodImage" />{p.name}</td>
                 <td className="productLinks">
                   <Link passHref href={`/products/${p.id}`}>
                     <Button variant="link">https://{p.name}/details</Button>
