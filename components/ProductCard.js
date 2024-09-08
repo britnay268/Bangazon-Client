@@ -8,10 +8,13 @@ import { FaCartPlus } from 'react-icons/fa';
 import { BiDetail } from 'react-icons/bi';
 import { AiFillDelete } from 'react-icons/ai';
 import { useAuth } from '../utils/context/authContext';
+import AddedToCartModal from './AddedToCartModal';
 
 export default function ProductCard({ productObj, addProduct, deleteProduct }) {
   const router = useRouter();
   const [isAddedToCart, setIsAddedToCart] = useState(false);
+
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { user } = useAuth();
   const userId = user.user.id;
@@ -67,7 +70,7 @@ export default function ProductCard({ productObj, addProduct, deleteProduct }) {
                     </Button>
                   )}
 
-                  {isAddedToCart && <span>Product added to cart.</span>}
+                  {isAddedToCart && <AddedToCartModal onClose={() => setIsAddedToCart(false)} />}
                 </div>
               )}
           </div>
