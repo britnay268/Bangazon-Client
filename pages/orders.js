@@ -14,8 +14,6 @@ export default function OrderHistory() {
     getCompletedOrders(userId).then(setOrders);
   };
 
-  console.warn(orders);
-
   useEffect(() => {
     completedOrders();
   }, []);

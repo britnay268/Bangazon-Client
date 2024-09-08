@@ -26,8 +26,8 @@ export default function Profile() {
       <div>
         <p><FaRegUser /> {user.fbUser.displayName}</p>
         <p><MdOutlineMailOutline /> {user.fbUser.email}</p>
-        <Link passHref href="/orderhistory">
-          <Nav.Link variant="link" style={{ marginBottom: '15px' }}> <TfiMenuAlt /> View Order History</Nav.Link>
+        <Link passHref href="/orders">
+          <Nav.Link variant="link" style={{ marginBottom: '15px' }}> <TfiMenuAlt /> Completed Orders</Nav.Link>
         </Link>
         <p><TbZoomMoney /> Seller: {user.user.seller ? 'Yes' : 'No'}</p>
       </div>

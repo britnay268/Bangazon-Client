@@ -13,15 +13,7 @@ import { BiDetail } from 'react-icons/bi';
 
 export default function OrderCards({ orderObj }) {
   return (
-    <div>
-      {/* <Card style={{ marginBottom: '20px' }}>
-        <Card.Body>
-          <div className="orderHistoryDetails">
-            <Card.Title>Order Number: {orderObj.orderNum}</Card.Title>
-            <Card.Text>Order Date: {orderObj.datePlaced}</Card.Text>
-          </div>
-        </Card.Body>
-      </Card> */}
+    <>
       <ListGroup style={{ marginBottom: '20px' }}>
         <ListGroup.Item>
           <div><strong>Order Number:</strong> {orderObj.orderNum}</div>
@@ -29,7 +21,7 @@ export default function OrderCards({ orderObj }) {
         </ListGroup.Item>
 
         {orderObj.products.map((product) => (
-          <ListGroup.Item>
+          <ListGroup.Item key={product.id}>
             <Card className="checkout-card">
               <Card.Img variant="top" src={product.imageUrl} />
               <Card.Body>
@@ -54,7 +46,7 @@ export default function OrderCards({ orderObj }) {
         ))}
 
       </ListGroup>
-    </div>
+    </>
   );
 }
 
