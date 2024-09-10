@@ -8,10 +8,13 @@ import { FaCartPlus } from 'react-icons/fa';
 import { BiDetail } from 'react-icons/bi';
 import { AiFillDelete } from 'react-icons/ai';
 import { useAuth } from '../utils/context/authContext';
+import AddedToCartModal from './AddedToCartModal';
 
 export default function ProductCard({ productObj, addProduct, deleteProduct }) {
   const router = useRouter();
   const [isAddedToCart, setIsAddedToCart] = useState(false);
+
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { user } = useAuth();
   const userId = user.user.id;
@@ -30,8 +33,8 @@ export default function ProductCard({ productObj, addProduct, deleteProduct }) {
   return (
     <div>
       <Card className="product-card">
-        <Card.Img src={productObj.imageUrl} />
-        <Card.Body>
+        <Card.Img src={productObj.imageUrl} style={{ height: '190px', width: '190px' }} />
+        <Card.Body style={{ marginLeft: '40px' }}>
           <div className="productDetails">
             <div>
               <Card.Title>{productObj.name}</Card.Title>
@@ -42,6 +45,7 @@ export default function ProductCard({ productObj, addProduct, deleteProduct }) {
             <div className="productCartContent">
               <div>
                 <Card.Text className="price">${productObj.price}</Card.Text>
+                <Card.Text style={{ marginBottom: '0px' }}>Available: {productObj.quantity}</Card.Text>
                 <Card.Text className={productObj.quantity > 0 ? 'inStock' : 'outOfStock'}>{productObj.quantity > 0 ? 'In Stock' : 'Out of Stock'}</Card.Text>
               </div>
             </div>
@@ -60,10 +64,13 @@ export default function ProductCard({ productObj, addProduct, deleteProduct }) {
                     <Button className="btnAlign" variant="link"><BiDetail />
                     </Button>
                   </Link>
-                  <Button variant="link" style={{ color: '#0FF34F' }} onClick={handleAddToCart}>
-                    <FaCartPlus />
-                  </Button>
-                  {isAddedToCart && <span>Product added to cart.</span>}
+                  {productObj.quantity <= 0 ? '' : (
+                    <Button variant="link" style={{ color: '#0FF34F' }} onClick={handleAddToCart}>
+                      <FaCartPlus />
+                    </Button>
+                  )}
+
+                  {isAddedToCart && <AddedToCartModal onClose={() => setIsAddedToCart(false)} />}
                 </div>
               )}
           </div>

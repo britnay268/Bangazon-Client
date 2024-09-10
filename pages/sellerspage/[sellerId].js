@@ -15,7 +15,7 @@ export default function SellersPage() {
 
   return (
     <div>
-      <h1 style={{ textAlign: 'center', width: '100%' }}>{sellersProducts[0]?.user?.username} Products</h1>
+      <h1 style={{ textAlign: 'center', width: '100%' }}>{sellersProducts[0]?.user?.username} Store</h1>
       <div className="product-page">
         {(sellersProducts.length === 0) ? <h1>You have no Products</h1> : sellersProducts.map((product) => (
           <ProductCard key={product.id} productObj={product} />

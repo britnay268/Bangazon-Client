@@ -14,11 +14,18 @@ export default function ShowProducts() {
     getAllTheProducts();
   }, []);
 
+  const addProductToCart = async (productId, userId) => {
+    addProductToOrder(productId, userId);
+
+    // Update quantity of product that is added to cart
+    setProducts(products.map((product) => (product.id === productId ? { ...product, quantity: product.quantity - 1 } : product)));
+  };
+
   return (
     <div className="product-page">
       {products.length === 0 ? <h1>You have no Products</h1> : products.map((product) => (
         // The addProduct is using the api to
-        <ProductCard key={product.id} productObj={product} addProduct={addProductToOrder} />
+        <ProductCard key={product.id} productObj={product} addProduct={addProductToCart} />
       ))}
     </div>
   );

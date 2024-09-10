@@ -15,6 +15,18 @@ const getUsersOrders = (userId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getCompletedOrders = (userId) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/api/user/${userId}/orders/completed`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 // GET User details
 const getUserById = (userId) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/api/user/${userId}`, {
@@ -47,4 +59,6 @@ const getSellersProducts = (sellerId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export { getUsersOrders, getUserById, getSellersProducts };
+export {
+  getUsersOrders, getUserById, getSellersProducts, getCompletedOrders,
+};

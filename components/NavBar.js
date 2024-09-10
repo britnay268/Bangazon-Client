@@ -46,6 +46,9 @@ export default function NavBar() {
             <Link passHref href="/products">
               <Nav.Link>Products</Nav.Link>
             </Link>
+            <Link passHref href="/orders">
+              <Nav.Link>Orders</Nav.Link>
+            </Link>
             <SearchBar />
           </Nav>
           <div className="d-flex">
