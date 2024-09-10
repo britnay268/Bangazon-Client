@@ -28,7 +28,7 @@ export default function AddedToCartModal({ onClose }) {
     >
       <Modal show onHide={onClose}>
         <Modal.Body>
-          <p>Added To Cart</p>
+          <p><strong>Added To Cart!</strong></p>
         </Modal.Body>
         <Modal.Footer>
           <Link passHref href={`/cart/${cart.id}`}>
