@@ -17,7 +17,6 @@ export default function OrderCards({ orderObj }) {
       <Dropdown style={{ marginBottom: '20px' }}>
         <>
           <ListGroup>
-
             <ListGroup.Item>
               <div><strong>Order Number:</strong> {orderObj.orderNum}</div>
               <div><strong>Order Date:</strong> {orderObj.datePlaced.split('T')[0]}</div>

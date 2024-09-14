@@ -320,3 +320,16 @@ body {
 .orderHistoryDetails{
   padding: 20px;
 }
+
+.category-buttons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    background-color: rgba(0, 0, 0, 0.08);
+    color: black;
+    border: none;
+    border-radius: 15px;
+  }
+}
