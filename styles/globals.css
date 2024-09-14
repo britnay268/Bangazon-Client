@@ -333,3 +333,14 @@ body {
     border-radius: 15px;
   }
 }
+
+.categoryLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 15px;
+
+  a {
+    padding: 0px;
+  }
+}
