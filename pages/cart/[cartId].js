@@ -26,9 +26,15 @@ export default function Cart() {
   const deleteProductFromCart = async (productId) => {
     if (window.confirm('Delete this product?')) {
       await deleteProductFromOrder(cartId, productId);
-      // Update the cart state after successful deletion
-      // Explanation: Iterates through and see if the product id in the cart is not equal to productId that was removed amd keeps that product and store it in the updatedCart so it can dynamically update the cart after a product is deleted. updatedCart is a new array of products excluding the deleted product.
-      const updatedCart = cart.products.filter((p) => p.id !== productId);
+
+      // When a product is being deleted, you want on page load that quantity in the cart updates and not remove the entire product from the page and you have to reloa dto see the changes
+      const updatedCart = cart.products.map((product) => {
+        if (product.id === productId) {
+          return product.cartQuantity > 1 ? { ...product, cartQuantity: product.cartQuantity - 1 } : null;
+        }
+        return product;
+        // removes any null values that were returned for products marked for deletion.
+      }).filter((product) => product !== null);
 
       // Calculate the new totalPrice by iterating through the updated products array and summing their prices.
       const newTotalPrice = updatedCart.reduce((total, product) => total + product.price, 0);

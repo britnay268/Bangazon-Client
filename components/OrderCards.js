@@ -76,6 +76,7 @@ OrderCards.propTypes = {
         price: PropTypes.number,
         description: PropTypes.string,
         quantity: PropTypes.number,
+        cartQuantity: PropTypes.number,
         imageUrl: PropTypes.string,
         user: PropTypes.shape({
           id: PropTypes.number,

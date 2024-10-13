@@ -28,6 +28,7 @@ export default function CartProducts({ productObj, deleteProduct }) {
             </div>
             <div>
               <Card.Text className="price">Price: ${productObj.price}</Card.Text>
+              <Card.Text className="price">Quantity: {productObj.cartQuantity}</Card.Text>
               <Card.Text className={productObj.quantity > 0 ? 'inStock' : 'outOfStock'}>{productObj.quantity > 0 ? 'In Stock' : 'Out of Stock'}</Card.Text>
             </div>
           </div>
@@ -59,6 +60,7 @@ CartProducts.propTypes = {
     price: PropTypes.number,
     description: PropTypes.string,
     quantity: PropTypes.number,
+    cartQuantity: PropTypes.number,
     imageUrl: PropTypes.string,
     user: PropTypes.shape({
       id: PropTypes.number,
